@@ -1,0 +1,10 @@
+node_modules/
+edge-tts-browser/
+教学内容/
+自测题/
+*.docx
+*.zip
+__pycache__/
+.vscode/
+.DS_Store
+Thumbs.db

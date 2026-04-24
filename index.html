@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python 零基础学习平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="header-title">⌨️ Python 零基础学习平台</div>
+    <div class="nav-controls">
+      <select id="weekSelect" class="week-select">
+        <option value="week1">第1周：编程初识与环境搭建</option>
+        <option value="week2">第2周：变量与数据类型</option>
+        <option value="week3">第3周：运算符与表达式</option>
+        <option value="week4">第4周：流程控制-条件判断</option>
+      </select>
+      <button id="prevBtn" class="nav-btn" disabled>← 上一页</button>
+      <span class="pagination" id="pagination">1 / 8</span>
+      <button id="nextBtn" class="nav-btn">下一页 →</button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div id="slideContent" class="slide-container">
+      <div class="loading">加载中...</div>
+    </div>
+  </div>
+
+  <div class="captions-container" id="captionsContainer" style="display: none;">
+    <div id="captionLine" class="caption-line"></div>
+    <div class="caption-progress">
+      <div id="captionProgressBar" class="caption-progress-bar"></div>
+    </div>
+  </div>
+
+  <div class="tts-controls">
+    <select id="voiceSelect" class="voice-select">
+      <option value="zh-CN-YunYangNeural">👨 云扬 (男)</option>
+      <option value="zh-CN-XiaoWeiNeural">👨 小伟 (男)</option>
+      <option value="zh-CN-XiaoXiongNeural">👨 小雄 (男)</option>
+      <option value="zh-CN-XiaoTianNeural">👨 小天 (男)</option>
+      <option value="zh-CN-XiaoxiaoNeural">👩 晓晓 (女)</option>
+      <option value="zh-CN-YunxiaNeural">👩 云夏 (女)</option>
+      <option value="zh-CN-YunxiNeural">👩 云希 (女)</option>
+      <option value="zh-CN-XiaoYaNeural">👩 小雅 (女)</option>
+    </select>
+    <button id="ttsToggle" class="tts-btn">▶</button>
+    <div class="tts-progress">
+      <div id="ttsProgressBar" class="tts-progress-bar"></div>
+    </div>
+  </div>
+
+  <script src="libs/edge-tts-browser.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

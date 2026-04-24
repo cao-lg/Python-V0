@@ -1,0 +1,81 @@
+{
+  "week": 3,
+  "title": "运算符与表达式",
+  "pages": [
+    {
+      "id": 0,
+      "type": "cover",
+      "title": "课程介绍",
+      "speech": "欢迎来到第3周！本周我们将学习运算符和表达式，让数据真正动起来。"
+    },
+    {
+      "id": 1,
+      "type": "objectives",
+      "title": "教学目标",
+      "speech": "本周的学习目标包括：掌握算术运算符、比较运算符和逻辑运算符的用法，理解运算符优先级规则，以及学会字符串操作。",
+      "knowledge": ["算术运算符", "比较运算符", "逻辑运算符", "运算符优先级"],
+      "skills": ["进行数学运算", "进行条件判断", "组合逻辑表达式", "处理字符串"]
+    },
+    {
+      "id": 2,
+      "type": "concept",
+      "title": "算术运算符",
+      "subtitle": "让数据动起来",
+      "speech": "算术运算符用于进行数学运算，包括加减乘除、整除、取余和幂运算。这些运算符让我们可以对数据进行各种计算。",
+      "points": [
+        {"icon": "➕", "title": "基本运算", "desc": "加减乘除 + - * /"},
+        {"icon": "➗", "title": "整除取余", "desc": "// 整除  % 取余"},
+        {"icon": "🔺", "title": "幂运算", "desc": "** 计算乘方"},
+        {"icon": "📐", "title": "运算顺序", "desc": "先乘除后加减"}
+      ]
+    },
+    {
+      "id": 3,
+      "type": "features",
+      "title": "比较与逻辑运算符",
+      "speech": "比较运算符用来比较两个值的大小关系，返回布尔值。逻辑运算符用来组合多个条件判断。",
+      "features": [
+        {"icon": "⚖️", "title": "比较运算符", "desc": "== != > < >= <="},
+        {"icon": "🧩", "title": "逻辑运算符", "desc": "and or not"},
+        {"icon": "🔍", "title": "判断真假", "desc": "返回True或False"},
+        {"icon": "🔗", "title": "组合条件", "desc": "构建复杂判断"}
+      ]
+    },
+    {
+      "id": 4,
+      "type": "setup",
+      "title": "运算符优先级",
+      "speech": "运算符优先级决定了表达式的计算顺序。记住：括号最优先，幂运算次之，然后是乘除，最后是加减。",
+      "steps": [
+        {"number": "01", "title": "括号优先", "desc": "() 改变运算顺序"},
+        {"number": "02", "title": "幂运算", "desc": "** 比乘除更优先"},
+        {"number": "03", "title": "乘除模", "desc": "* / // % 次之"},
+        {"number": "04", "title": "加减", "desc": "+ - 优先级最低"}
+      ]
+    },
+    {
+      "id": 5,
+      "type": "code",
+      "title": "运算符综合示例",
+      "speech": "让我们看一些运算符的综合示例代码，包括算术运算、比较运算和逻辑运算的组合使用。",
+      "code": "# 算术运算\na, b = 17, 5\nprint(a + b)   # 22\nprint(a // b)  # 3 整除\nprint(a % b)   # 2 取余\nprint(a ** b)  # 1419857 幂运算\n\n# 比较运算\nscore = 85\nprint(score >= 60)  # True\nprint(score == 100) # False\n\n# 逻辑运算\nage = 25\nhas_ticket = True\ncan_enter = age >= 18 and has_ticket\nprint(can_enter)  # True",
+      "output": "22\n3\n2\n1419857\nTrue\nFalse\nTrue"
+    },
+    {
+      "id": 6,
+      "type": "summary",
+      "title": "本周总结",
+      "speech": "本周我们学习了算术运算符、比较运算符和逻辑运算符，理解了运算符优先级规则，还学习了字符串的拼接、重复和索引操作。",
+      "keyPoints": ["算术运算：+ - * / // % **", "比较运算返回布尔值", "逻辑运算：and or not", "括号改变运算顺序"],
+      "stats": {"concepts": 6, "exercises": 6, "projects": 1, "codeLines": 35}
+    },
+    {
+      "id": 7,
+      "type": "ending",
+      "title": "结束页",
+      "speech": "恭喜你完成第3周的学习！下一周我们将学习流程控制和条件判断。",
+      "message": "恭喜你完成第3周的学习！",
+      "nextStep": "下一周我们将学习流程控制-条件判断"
+    }
+  ]
+}

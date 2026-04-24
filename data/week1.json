@@ -1,0 +1,81 @@
+{
+  "week": 1,
+  "title": "编程初识与环境搭建",
+  "pages": [
+    {
+      "id": 0,
+      "type": "cover",
+      "title": "课程介绍",
+      "speech": "欢迎来到Python零基础学习平台。本周我们将学习编程的基本概念和环境搭建。让我们开始吧！"
+    },
+    {
+      "id": 1,
+      "type": "objectives",
+      "title": "教学目标",
+      "speech": "本周的学习目标包括：理解编程的本质，了解Python语言的特点，掌握环境搭建流程，以及理解程序的基本运行过程。",
+      "knowledge": ["理解编程本质", "了解Python特点", "掌握环境搭建", "理解程序运行"],
+      "skills": ["安装Python与VS Code", "编写第一个程序", "使用print()输出", "解决配置问题"]
+    },
+    {
+      "id": 2,
+      "type": "concept",
+      "title": "什么是编程？",
+      "subtitle": "编程是翻译的艺术",
+      "speech": "编程就是用计算机能理解的语言，把人类的想法翻译给计算机。就像指挥一个非常听话但很笨的机器人，每一步都要说清楚。",
+      "points": [
+        {"icon": "🤖", "title": "与机器人对话", "desc": "用计算机语言描述步骤"},
+        {"icon": "📝", "title": "编写指令", "desc": "一行一行的代码"},
+        {"icon": "🔄", "title": "执行过程", "desc": "计算机逐条执行"},
+        {"icon": "🎯", "title": "达成目标", "desc": "完成特定任务"}
+      ]
+    },
+    {
+      "id": 3,
+      "type": "features",
+      "title": "为什么选择Python？",
+      "speech": "Python有很多优点，最主要的是它接近自然语言，语法简洁，开发效率高，而且应用范围非常广泛。",
+      "features": [
+        {"icon": "💬", "title": "接近自然语言", "desc": "语法简洁，易于理解"},
+        {"icon": "⚡", "title": "开发效率高", "desc": "代码量少，开发快"},
+        {"icon": "🌐", "title": "应用广泛", "desc": "Web、AI、数据分析"},
+        {"icon": "👥", "title": "社区活跃", "desc": "丰富资源和支持"}
+      ]
+    },
+    {
+      "id": 4,
+      "type": "setup",
+      "title": "搭建编程环境",
+      "speech": "搭建编程环境需要两个关键工具：Python解释器和代码编辑器VS Code。安装时注意勾选Add Python to PATH选项。",
+      "steps": [
+        {"number": "01", "title": "安装Python", "desc": "官网下载，勾选Add to PATH"},
+        {"number": "02", "title": "安装VS Code", "desc": "微软官方编辑器"},
+        {"number": "03", "title": "安装Python扩展", "desc": "提供语法高亮和调试"},
+        {"number": "04", "title": "新建文件", "desc": "保存为 .py 扩展名"}
+      ]
+    },
+    {
+      "id": 5,
+      "type": "code",
+      "title": "第一个Python程序",
+      "speech": "让我们编写第一个Python程序。使用print函数可以在屏幕上输出文字。注意文字需要用引号括起来。",
+      "code": "# 这是你的第一个程序\nprint(\"你好，世界\")\nprint(\"我是一名Python学习者\")\nprint(\"今天是我学编程的第一天\")",
+      "output": "你好，世界\n我是一名Python学习者\n今天是我学编程的第一天"
+    },
+    {
+      "id": 6,
+      "type": "summary",
+      "title": "本周总结",
+      "speech": "本周我们学习了编程的基本概念，了解了为什么选择Python，掌握了环境搭建的步骤，并编写了第一个程序。",
+      "keyPoints": ["编程 = 把想法翻译成代码", "Python简洁易学，应用广泛", "环境搭建：Python + VS Code", "print()是最基础的输出函数"],
+      "stats": {"concepts": 4, "exercises": 5, "projects": 1, "codeLines": 15}
+    },
+    {
+      "id": 7,
+      "type": "ending",
+      "title": "结束页",
+      "speech": "恭喜你完成第1周的学习！下一周我们将学习变量与数据类型。",
+      "message": "恭喜你完成第1周的学习！",
+      "nextStep": "下一周我们将学习变量与数据类型"
+    }
+  ]
+}
