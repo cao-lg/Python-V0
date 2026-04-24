@@ -289,11 +289,14 @@ class LearningPlatform {
 
   async toggleTTS() {
     const btn = document.getElementById('ttsToggle');
+    const controls = document.querySelector('.tts-controls');
     if (btn.textContent === '▶') {
       btn.textContent = '⏸';
+      controls.classList.add('playing');
       await this.startTTSWithCaptions();
     } else {
       btn.textContent = '▶';
+      controls.classList.remove('playing');
       this.stopTTSWithCaptions();
     }
   }
@@ -329,7 +332,9 @@ class LearningPlatform {
       
       this.playAudio();
     } catch (error) {
-      console.error('TTS合成失败:', error);
+      const errorMsg = error instanceof Event ? '网络连接受限，使用浏览器语音' : 
+                       error.message || 'TTS合成失败';
+      console.error('TTS合成失败:', errorMsg);
       this.fallbackTTS(text);
     }
   }
@@ -392,6 +397,7 @@ class LearningPlatform {
   onAudioEnded() {
     this.isPlaying = false;
     document.getElementById('ttsToggle').textContent = '▶';
+    document.querySelector('.tts-controls').classList.remove('playing');
     document.getElementById('captionsContainer').style.display = 'none';
     document.getElementById('ttsProgressBar').style.width = '0%';
     document.getElementById('captionProgressBar').style.width = '0%';

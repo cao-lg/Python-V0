@@ -470,6 +470,20 @@ body {
   border: 1px solid var(--border-color);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.tts-controls.playing {
+  bottom: 80px;
+  padding: 8px 12px;
+}
+
+.tts-controls.playing .voice-select {
+  display: none;
+}
+
+.tts-controls.playing .tts-progress {
+  width: 80px;
 }
 
 .tts-btn {
@@ -575,7 +589,7 @@ body {
 
 .captions-container {
   position: fixed;
-  bottom: 120px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   max-width: 90%;
@@ -583,10 +597,10 @@ body {
   background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
-  border-radius: 12px 12px 0 0;
-  padding: 16px 24px;
+  border-radius: 12px;
+  padding: 12px 24px;
   text-align: center;
-  z-index: 99;
+  z-index: 98;
   box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
 }
 
