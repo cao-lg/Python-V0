@@ -304,39 +304,112 @@ class LearningPlatform {
   async startTTSWithCaptions() {
     const page = weekData.pages[this.currentPageIndex];
     const text = page.speech || '正在讲解当前内容';
-    
-    this.captionLines = text.split(/[，。！？；；]/).filter(line => line.trim());
-    this.currentCaptionIndex = 0;
+    const week = document.getElementById('weekSelect').value;
     
     document.getElementById('captionsContainer').style.display = 'block';
-    this.showCurrentCaption();
 
     try {
-      const voiceSelect = document.getElementById('voiceSelect');
-      const selectedVoice = voiceSelect.value;
+      const timestampsUrl = `audio/${week}/page${this.currentPageIndex}_timestamps.json`;
+      const response = await fetch(timestampsUrl);
       
-      const tts = new EdgeTTSBrowser({
-        text: text,
-        voice: selectedVoice,
-        rate: '+0%',
-        pitch: '+0Hz',
-        volume: '+0%'
-      });
-
-      const audioBlob = await tts.ttsToFile();
-      this.currentAudioDuration = await this.getAudioDuration(audioBlob);
+      if (response.ok) {
+        this.captionTimestamps = await response.json();
+        console.log('加载时间戳:', this.captionTimestamps.length, '条');
+        
+        if (this.captionTimestamps.length > 0) {
+          this.currentCaptionIndex = 0;
+          this.showCurrentCaption();
+        }
+      } else {
+        this.captionTimestamps = null;
+        this.captionLines = text.split(/[，。！？；；]/).filter(line => line.trim());
+        this.currentCaptionIndex = 0;
+        this.showCurrentCaption();
+        console.log('未找到时间戳文件，使用均匀分割模式');
+      }
       
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const arrayBuffer = await audioBlob.arrayBuffer();
-      this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+      const audioUrl = `audio/${week}/page${this.currentPageIndex}.mp3`;
+      console.log('播放预合成音频:', audioUrl);
       
-      this.playAudio();
+      this.audioElement = new Audio(audioUrl);
+      
+      this.audioElement.onloadedmetadata = () => {
+        this.currentAudioDuration = this.audioElement.duration;
+        console.log('音频时长:', this.currentAudioDuration, '秒');
+      };
+      
+      this.audioElement.ontimeupdate = () => {
+        this.updateCaptions();
+        this.updateProgress();
+      };
+      
+      this.audioElement.onloadeddata = () => {
+        console.log('音频加载完成，开始播放');
+        this.audioElement.play();
+      };
+      
+      this.audioElement.onended = () => {
+        this.onAudioEnded();
+      };
+      
+      this.audioElement.onerror = (error) => {
+        console.error('音频播放失败:', error);
+        throw new Error('音频文件加载失败');
+      };
+      
     } catch (error) {
-      const errorMsg = error instanceof Event ? '网络连接受限，使用浏览器语音' : 
-                       error.message || 'TTS合成失败';
-      console.error('TTS合成失败:', errorMsg);
+      const errorMsg = error instanceof Event ? '音频文件加载失败' : 
+                       error.message || '音频播放失败';
+      console.error('音频播放失败:', errorMsg);
+      console.log('切换到浏览器原生语音合成');
+      this.captionLines = text.split(/[，。！？；；]/).filter(line => line.trim());
+      this.currentCaptionIndex = 0;
+      this.showCurrentCaption();
       this.fallbackTTS(text);
     }
+  }
+  
+  updateCaptions() {
+    if (!this.audioElement) return;
+    
+    const currentTime = this.audioElement.currentTime;
+    
+    if (this.captionTimestamps && this.captionTimestamps.length > 0) {
+      let foundIndex = -1;
+      for (let i = 0; i < this.captionTimestamps.length; i++) {
+        const caption = this.captionTimestamps[i];
+        if (currentTime >= caption.start && currentTime < caption.end) {
+          foundIndex = i;
+          break;
+        }
+      }
+      
+      if (foundIndex !== -1 && foundIndex !== this.currentCaptionIndex) {
+        this.currentCaptionIndex = foundIndex;
+        this.showCurrentCaption();
+        console.log(`字幕切换: ${this.currentCaptionIndex + 1}/${this.captionTimestamps.length}`);
+      }
+    } else {
+      const progress = this.currentAudioDuration ? (currentTime / this.currentAudioDuration) : 0;
+      const expectedIndex = Math.floor(progress * (this.captionLines?.length || 1));
+      if (expectedIndex !== this.currentCaptionIndex && expectedIndex < (this.captionLines?.length || 0)) {
+        this.currentCaptionIndex = expectedIndex;
+        this.showCurrentCaption();
+      }
+    }
+  }
+  
+  updateProgress() {
+    if (!this.audioElement || !this.currentAudioDuration) return;
+    
+    const currentTime = this.audioElement.currentTime;
+    const progress = Math.min((currentTime / this.currentAudioDuration) * 100, 100);
+    
+    document.getElementById('ttsProgressBar').style.width = progress + '%';
+    
+    const totalCaptions = this.captionTimestamps?.length || this.captionLines?.length || 1;
+    const captionProgress = ((this.currentCaptionIndex + 1) / totalCaptions) * 100;
+    document.getElementById('captionProgressBar').style.width = captionProgress + '%';
   }
 
   getAudioDuration(blob) {
@@ -373,9 +446,9 @@ class LearningPlatform {
   }
 
   updateProgressLoop() {
-    if (!this.isPlaying) return;
+    if (!this.audioElement || this.audioElement.ended) return;
     
-    const currentTime = this.audioContext.currentTime - this.audioStartTime;
+    const currentTime = this.audioElement.currentTime;
     const progress = Math.min((currentTime / this.currentAudioDuration) * 100, 100);
     
     document.getElementById('ttsProgressBar').style.width = progress + '%';
@@ -409,50 +482,68 @@ class LearningPlatform {
       utterance.lang = 'zh-CN';
       
       const voices = window.speechSynthesis.getVoices();
+      console.log('可用语音:', voices.length, '个');
+      
       const selectedVoiceId = document.getElementById('voiceSelect').value;
       const voice = voices.find(v => v.name === selectedVoiceId) || voices.find(v => v.lang.startsWith('zh'));
       
       if (voice) {
         utterance.voice = voice;
+        console.log('使用语音:', voice.name);
+      } else {
+        console.log('未找到匹配的中文语音，使用默认语音');
       }
       
       utterance.rate = 0.9;
       utterance.onend = () => {
         this.isPlaying = false;
         document.getElementById('ttsToggle').textContent = '▶';
+        document.querySelector('.tts-controls').classList.remove('playing');
+        document.getElementById('captionsContainer').style.display = 'none';
+        console.log('浏览器语音播放结束');
+      };
+      
+      utterance.onerror = (event) => {
+        console.error('浏览器语音播放错误:', event.error);
+        this.isPlaying = false;
+        document.getElementById('ttsToggle').textContent = '▶';
       };
       
       window.speechSynthesis.speak(utterance);
+      console.log('开始浏览器原生语音合成');
+
     }
   }
 
   showCurrentCaption() {
     const captionElement = document.getElementById('captionLine');
-    if (this.captionLines[this.currentCaptionIndex]) {
-      captionElement.textContent = this.captionLines[this.currentCaptionIndex].trim();
+    
+    let captionText = '';
+    if (this.captionTimestamps && this.captionTimestamps[this.currentCaptionIndex]) {
+      captionText = this.captionTimestamps[this.currentCaptionIndex].text.trim() + '。';
+    } else if (this.captionLines && this.captionLines[this.currentCaptionIndex]) {
+      captionText = this.captionLines[this.currentCaptionIndex].trim();
+    }
+    
+    if (captionText) {
+      captionElement.textContent = captionText;
       captionElement.classList.add('active');
     }
   }
 
   stopTTSWithCaptions() {
-    this.isPlaying = false;
-    
-    if (this.sourceNode) {
+    if (this.audioElement) {
       try {
-        this.sourceNode.stop();
+        this.audioElement.pause();
+        this.audioElement.currentTime = 0;
       } catch (e) {
         console.log('Audio already stopped');
       }
-      this.sourceNode = null;
+      this.audioElement = null;
     }
     
     if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
-    }
-    
-    if (this.audioContext) {
-      this.audioContext.close();
-      this.audioContext = null;
     }
     
     document.getElementById('ttsProgressBar').style.width = '0%';
