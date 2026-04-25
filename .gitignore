@@ -8,3 +8,12 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
+*.log
+*.pyc
+test_*.py
+test_*.mp3
+test_*.wav
+test_*.srt
+test_*.json
+exp/
+test_output/

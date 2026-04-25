@@ -1,4 +1,0 @@
-2026-04-25 10:48:57.828 | DEBUG    | paddlespeech.s2t:<module>:45 - register user log_softmax to paddle, remove this when fixed!
-2026-04-25 10:48:57.828 | DEBUG    | paddlespeech.s2t:<module>:53 - register user log_sigmoid to paddle, remove this when fixed!
-2026-04-25 10:48:57.828 | DEBUG    | paddlespeech.s2t:<module>:57 - register user relu to paddle, remove this when fixed!
-2026-04-25 10:48:57.828 | DEBUG    | paddlespeech.s2t:<module>:244 - register user relu to paddle.Tensor, remove this when fixed!
