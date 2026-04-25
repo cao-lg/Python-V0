@@ -28,9 +28,15 @@
   </div>
 
   <div class="captions-container" id="captionsContainer" style="display: none;">
-    <div id="captionLine" class="caption-line"></div>
+    <div class="captions-wrapper">
+      <div id="captionLine" class="caption-line"></div>
+      <div id="captionLineNext" class="caption-line caption-line-next"></div>
+    </div>
     <div class="caption-progress">
       <div id="captionProgressBar" class="caption-progress-bar"></div>
+    </div>
+    <div class="caption-info">
+      <span id="captionIndex">1/4</span>
     </div>
   </div>
 
@@ -45,13 +51,23 @@
       <option value="zh-CN-YunxiNeural">👩 云希 (女)</option>
       <option value="zh-CN-XiaoYaNeural">👩 小雅 (女)</option>
     </select>
-    <button id="ttsToggle" class="tts-btn">▶</button>
-    <div class="tts-progress">
-      <div id="ttsProgressBar" class="tts-progress-bar"></div>
+    <div class="tts-controls-center">
+      <button id="ttsPrev" class="tts-btn small-btn">⏮</button>
+      <button id="ttsToggle" class="tts-btn play-btn">▶</button>
+      <button id="ttsNext" class="tts-btn small-btn">⏭</button>
+    </div>
+    <div class="tts-progress-container">
+      <div class="tts-progress">
+        <div id="ttsProgressBar" class="tts-progress-bar"></div>
+      </div>
+      <span id="ttsTime">00:00 / 00:00</span>
     </div>
   </div>
 
   <script src="libs/edge-tts-browser.min.js"></script>
+  <script src="modules/caption-sync.js"></script>
+  <script src="modules/page-renderer.js"></script>
+  <script src="modules/audio-player.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

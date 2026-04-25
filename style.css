@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1b4b 100%);
@@ -537,56 +541,6 @@ body {
   color: var(--text-secondary);
 }
 
-@media (max-width: 768px) {
-  .header {
-    padding: 12px 16px;
-  }
-  
-  .header-title {
-    font-size: 16px;
-  }
-  
-  .nav-controls {
-    gap: 10px;
-  }
-  
-  .nav-btn {
-    padding: 8px 14px;
-    font-size: 12px;
-  }
-  
-  .main-content {
-    padding: 20px 16px;
-  }
-  
-  .cover-title {
-    font-size: 32px;
-  }
-  
-  .progress-bar-container {
-    width: 280px;
-  }
-  
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .two-column {
-    grid-template-columns: 1fr;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .tts-controls {
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    justify-content: center;
-  }
-}
-
 .captions-container {
   position: fixed;
   bottom: 20px;
@@ -665,13 +619,474 @@ body {
   transition: width 0.5s ease;
 }
 
+.highlighted {
+  animation: highlight 0.5s ease-out forwards;
+}
+
+@keyframes highlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px 10px rgba(99, 102, 241, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px 5px rgba(99, 102, 241, 0.2);
+    border-color: var(--primary-color) !important;
+    background: rgba(99, 102, 241, 0.1) !important;
+  }
+}
+
+.card.highlighted,
+.feature-item.highlighted,
+.stat-card.highlighted {
+  border-color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+}
+
+.card-list li.highlighted {
+  background: rgba(99, 102, 241, 0.2);
+  border-left: 3px solid var(--primary-color);
+  padding-left: 12px;
+}
+
+.tts-controls-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tts-btn.small-btn {
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+}
+
+.tts-btn.play-btn {
+  width: 52px;
+  height: 52px;
+  font-size: 22px;
+}
+
+.tts-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#ttsTime {
+  font-size: 12px;
+  color: var(--text-secondary);
+  min-width: 80px;
+  text-align: right;
+}
+
+.captions-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.caption-line-next {
+  font-size: 14px;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.caption-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+@media (min-width: 1400px) {
+  html {
+    font-size: 18px;
+  }
+  
+  .slide-container {
+    max-width: 1400px;
+  }
+  
+  .cover-title {
+    font-size: 56px;
+  }
+  
+  .slide-title {
+    font-size: 36px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 32px;
+  }
+  
+  .card {
+    padding: 32px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slide-container {
+    max-width: 100%;
+  }
+  
+  .header {
+    padding: 16px 24px;
+  }
+  
+  .main-content {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 992px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .cover-title {
+    font-size: 40px;
+  }
+  
+  .cover-icon {
+    font-size: 64px;
+  }
+  
+  .slide-title {
+    font-size: 28px;
+  }
+}
+
 @media (max-width: 768px) {
-  .captions-container {
-    bottom: 90px;
+  html {
+    font-size: 14px;
+  }
+  
+  .header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .header-title {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-controls {
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .nav-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  
+  .week-select {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-width: 120px;
+  }
+  
+  .pagination {
+    font-size: 14px;
+    min-width: 60px;
+  }
+  
+  .main-content {
+    padding: 20px 16px;
+    margin-top: 100px;
+  }
+  
+  .cover-page {
+    padding: 40px 0;
+  }
+  
+  .cover-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .cover-title {
+    font-size: 28px;
+  }
+  
+  .cover-subtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .progress-bar-container {
+    width: 280px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+  }
+  
+  .card-text,
+  .card-list li {
+    font-size: 13px;
+  }
+  
+  .two-column {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .code-block {
     padding: 16px;
   }
   
+  .code-block pre {
+    font-size: 12px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 16px;
+  }
+  
+  .stat-value {
+    font-size: 28px;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+  }
+  
+  .slide-title {
+    font-size: 24px;
+  }
+  
+  .slide-subtitle {
+    font-size: 14px;
+  }
+  
+  .feature-item {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .feature-content h3 {
+    font-size: 15px;
+  }
+  
+  .feature-content p {
+    font-size: 13px;
+  }
+  
+  .tts-controls {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+  
+  .tts-btn.play-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .tts-btn.small-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+  
+  .tts-progress {
+    width: 60px;
+  }
+  
+  .captions-container {
+    bottom: 85px;
+    padding: 12px 16px;
+    max-width: calc(100% - 32px);
+  }
+  
   .caption-line {
-    font-size: 16px;
+    font-size: 15px;
+  }
+  
+  .caption-line-next {
+    font-size: 12px;
+  }
+  
+  .footer-page {
+    padding: 40px 0;
+  }
+  
+  .footer-icon {
+    font-size: 48px;
+  }
+  
+  .footer-title {
+    font-size: 24px;
+  }
+  
+  .footer-text {
+    font-size: 14px;
+  }
+  
+  .cta-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .header {
+    padding: 10px 12px;
+  }
+  
+  .header-title {
+    font-size: 14px;
+  }
+  
+  .nav-controls {
+    gap: 8px;
+  }
+  
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .week-select {
+    min-width: 100px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  
+  .main-content {
+    padding: 16px 12px;
+  }
+  
+  .cover-icon {
+    font-size: 40px;
+  }
+  
+  .cover-title {
+    font-size: 24px;
+  }
+  
+  .progress-bar-container {
+    width: 220px;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .card-icon {
+    font-size: 24px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tts-controls {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  .tts-btn.play-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  
+  .tts-progress {
+    display: none;
+  }
+  
+  #ttsTime {
+    display: none;
+  }
+  
+  .captions-container {
+    bottom: 80px;
+  }
+  
+  .caption-line {
+    font-size: 14px;
+    min-height: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cover-title {
+    font-size: 20px;
+  }
+  
+  .cover-subtitle {
+    font-size: 14px;
+  }
+  
+  .slide-title {
+    font-size: 20px;
+  }
+  
+  .nav-btn {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+  
+  .pagination {
+    font-size: 12px;
+    min-width: 50px;
   }
 }

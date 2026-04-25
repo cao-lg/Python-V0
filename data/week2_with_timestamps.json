@@ -1,0 +1,234 @@
+{
+  "week": 2,
+  "title": "变量与数据类型",
+  "pages": [
+    {
+      "id": 0,
+      "type": "cover",
+      "title": "课程介绍",
+      "speech": "欢迎来到第2周！本周我们将学习变量和数据类型，这是编程的基础概念。",
+      "timestamps": [
+        {
+          "text": "欢迎来到第2周！本周我们将学习变量和数据类型，这是编程的基础概念",
+          "start": 0.0,
+          "end": 6.98
+        }
+      ],
+      "duration": 6.98
+    },
+    {
+      "id": 1,
+      "type": "objectives",
+      "title": "教学目标",
+      "speech": "本周的学习目标包括：理解变量的概念，掌握四种基本数据类型，了解变量命名规范，以及学会类型转换。",
+      "knowledge": [
+        "理解变量概念",
+        "掌握数据类型",
+        "变量命名规范",
+        "类型转换方法"
+      ],
+      "skills": [
+        "创建和使用变量",
+        "使用type()查看类型",
+        "使用input()获取输入",
+        "进行类型转换"
+      ],
+      "timestamps": [
+        {
+          "text": "本周的学习目标包括：理解变量的概念，掌握四种基本数据类型，了解变量命名规范，以及学会类型转换",
+          "start": 0.0,
+          "end": 9.34
+        }
+      ],
+      "duration": 9.34
+    },
+    {
+      "id": 2,
+      "type": "concept",
+      "title": "什么是变量？",
+      "subtitle": "变量是贴了标签的盒子",
+      "speech": "变量就像一个贴了标签的盒子，用来存储数据。你可以给盒子起个名字，然后往里面放东西，以后要用的时候直接叫名字就行。",
+      "points": [
+        {
+          "icon": "📦",
+          "title": "存储数据",
+          "desc": "变量是存储数据的容器"
+        },
+        {
+          "icon": "🏷️",
+          "title": "标签命名",
+          "desc": "给变量起一个有意义的名字"
+        },
+        {
+          "icon": "🔄",
+          "title": "随时更新",
+          "desc": "变量的值可以随时改变"
+        },
+        {
+          "icon": "📊",
+          "title": "类型灵活",
+          "desc": "Python变量类型动态变化"
+        }
+      ],
+      "timestamps": [
+        {
+          "text": "变量就像一个贴了标签的盒子，用来存储数据",
+          "start": 0.0,
+          "end": 4.35
+        },
+        {
+          "text": "你可以给盒子起个名字，然后往里面放东西，以后要用的时候直接叫名字就行",
+          "start": 4.35,
+          "end": 10.54
+        }
+      ],
+      "duration": 10.54
+    },
+    {
+      "id": 3,
+      "type": "features",
+      "title": "四种基本数据类型",
+      "speech": "Python中有四种基本数据类型：整数(int)、浮点数(float)、字符串(str)和布尔值(bool)。它们分别对应数字、小数、文字和真假判断。",
+      "features": [
+        {
+          "icon": "🔢",
+          "title": "整数 int",
+          "desc": "没有小数点的数字"
+        },
+        {
+          "icon": "📈",
+          "title": "浮点数 float",
+          "desc": "带小数点的数字"
+        },
+        {
+          "icon": "📝",
+          "title": "字符串 str",
+          "desc": "用引号包裹的文字"
+        },
+        {
+          "icon": "✅",
+          "title": "布尔值 bool",
+          "desc": "True 或 False"
+        }
+      ],
+      "timestamps": [
+        {
+          "text": "Python中有四种基本数据类型：整数(int)、浮点数(float)、字符串(str)和布尔值(bool)",
+          "start": 0.0,
+          "end": 8.58
+        },
+        {
+          "text": "它们分别对应数字、小数、文字和真假判断",
+          "start": 8.58,
+          "end": 13.08
+        }
+      ],
+      "duration": 13.08
+    },
+    {
+      "id": 4,
+      "type": "setup",
+      "title": "变量命名规则",
+      "speech": "给变量起名字有一定的规则：只能用字母、数字和下划线，不能以数字开头，区分大小写，不能用关键字。",
+      "steps": [
+        {
+          "number": "01",
+          "title": "只能用字母数字下划线",
+          "desc": "不能有空格或特殊符号"
+        },
+        {
+          "number": "02",
+          "title": "不能以数字开头",
+          "desc": "name1可以，1name不行"
+        },
+        {
+          "number": "03",
+          "title": "区分大小写",
+          "desc": "Age和age是不同变量"
+        },
+        {
+          "number": "04",
+          "title": "见名知意",
+          "desc": "用有意义的名字如student_age"
+        }
+      ],
+      "timestamps": [
+        {
+          "text": "给变量起名字有一定的规则：只能用字母、数字和下划线，不能以数字开头，区分大小写，不能用关键字",
+          "start": 0.0,
+          "end": 9.94
+        }
+      ],
+      "duration": 9.94
+    },
+    {
+      "id": 5,
+      "type": "code",
+      "title": "变量与类型转换示例",
+      "speech": "让我们看一些变量和类型转换的示例代码。注意input()函数返回的永远是字符串，需要转换类型才能进行数学运算。",
+      "code": "# 创建变量\nname = \"张三\"\nage = 18\nheight = 1.75\nis_student = True\n\nprint(type(name))      # <class 'str'>\nprint(type(age))       # <class 'int'>\nprint(type(height))    # <class 'float'>\nprint(type(is_student)) # <class 'bool'>\n\n# 类型转换\nuser_input = input(\"请输入年龄:\")\nage = int(user_input)\nprint(f\"你的年龄是{age}岁\")",
+      "output": "<class 'str'>\n<class 'int'>\n<class 'float'>\n<class 'bool'>\n请输入年龄:18\n你的年龄是18岁",
+      "timestamps": [
+        {
+          "text": "让我们看一些变量和类型转换的示例代码",
+          "start": 0.0,
+          "end": 4.23
+        },
+        {
+          "text": "注意input()函数返回的永远是字符串，需要转换类型才能进行数学运算",
+          "start": 4.23,
+          "end": 10.7
+        }
+      ],
+      "duration": 10.7
+    },
+    {
+      "id": 6,
+      "type": "summary",
+      "title": "本周总结",
+      "speech": "本周我们学习了变量和四种基本数据类型，掌握了变量命名规则和类型转换方法。这些是编程的基础，一定要扎实掌握。",
+      "keyPoints": [
+        "变量是存储数据的容器",
+        "四种基本类型：int/float/str/bool",
+        "变量命名有规则",
+        "input()返回字符串需要转换"
+      ],
+      "stats": {
+        "concepts": 5,
+        "exercises": 5,
+        "projects": 1,
+        "codeLines": 30
+      },
+      "timestamps": [
+        {
+          "text": "本周我们学习了变量和四种基本数据类型，掌握了变量命名规则和类型转换方法",
+          "start": 0.0,
+          "end": 7.68
+        },
+        {
+          "text": "这些是编程的基础，一定要扎实掌握",
+          "start": 7.68,
+          "end": 11.06
+        }
+      ],
+      "duration": 11.06
+    },
+    {
+      "id": 7,
+      "type": "ending",
+      "title": "结束页",
+      "speech": "恭喜你完成第2周的学习！下一周我们将学习运算符与表达式。",
+      "message": "恭喜你完成第2周的学习！",
+      "nextStep": "下一周我们将学习运算符与表达式",
+      "timestamps": [
+        {
+          "text": "恭喜你完成第2周的学习！下一周我们将学习运算符与表达式",
+          "start": 0.0,
+          "end": 5.9
+        }
+      ],
+      "duration": 5.9
+    }
+  ],
+  "totalDuration": 77.54
+}
