@@ -133,7 +133,7 @@ class LearningPlatform {
       this.captionSync.setTimestamps(timestamps);
     }
 
-    const audioUrl = `audio/${week}/page${this.currentPageIndex}.wav`;
+    const audioUrl = `audio/${week}/page${this.currentPageIndex}.mp3`;
     
     try {
       const success = await this.audioPlayer.loadAndPlay(audioUrl);
